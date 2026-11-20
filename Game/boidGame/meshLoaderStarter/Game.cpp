@@ -66,22 +66,10 @@ void Game::Release()
 	delete mpFont;
 	mpFont = nullptr;
 }
-int dir = 1;
+
 void Game::Update(float dTime)
 {	
-	float pos = mModels[Modelid::BIRD].GetPosition().y;
-	if (pos > 1 && dir > 0)
-	{
-		dir = -dir;
-	}
-	else if (pos < 0 && dir < 0)
-	{
-		dir = -dir;
-	}
-	
-	mModels[Modelid::BIRD].GetPosition().y += dir * dTime;
 
-	mModels[Modelid::BIRD].GetRotation().y += (3 * dTime);
 }
 
 void Game::Render(float dTime)
