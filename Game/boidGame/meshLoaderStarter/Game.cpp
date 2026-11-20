@@ -128,6 +128,31 @@ LRESULT Game::WindowsMssgHandler(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPar
 	{
 		// Respond to a keyboard event.
 	case WM_CHAR:
+		if (wParam == 'a')
+		{
+			Game::mCamPos.y += camInc;
+		}
+		if (wParam == 'z')
+		{
+			Game::mCamPos.y -= camInc;
+		}
+		if (wParam == 'w')
+		{
+			Game::mCamPos.z += camInc;
+		}
+		if (wParam == 's')
+		{
+			Game::mCamPos.z -= camInc;
+		}
+		if (wParam == 'd')
+		{
+			Game::mCamPos.x -= camInc;
+		}
+		if (wParam == 'f')
+		{
+			Game::mCamPos.x += camInc;
+		}
+
 		switch (wParam)
 		{
 		case 27:
@@ -135,25 +160,7 @@ LRESULT Game::WindowsMssgHandler(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPar
 		case 'Q':
 			PostQuitMessage(0);
 			return 0;
-		
-		case 'a':
-			Game::mCamPos.y += camInc;
-			break;
-		case 'z':
-			Game::mCamPos.y -= camInc;
-			break;
-		case 'd':
-			Game::mCamPos.x -= camInc;
-			break;
-		case 'f':
-			Game::mCamPos.x += camInc;
-			break;
-		case 'w':
-			Game::mCamPos.z += camInc;
-			break;
-		case 's':
-			Game::mCamPos.z -= camInc;
-			break;
+
 		case ' ':
 			Game::mCamPos = Game::mDefCamPos;
 			break;

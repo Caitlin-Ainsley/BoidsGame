@@ -119,6 +119,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GeometryBuilder.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="ShaderTypes.h" />
