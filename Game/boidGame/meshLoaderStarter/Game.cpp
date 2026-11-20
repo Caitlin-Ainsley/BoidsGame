@@ -7,6 +7,9 @@ using namespace std;
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
+MouseAndKeys Game::sMKIn;
+Gamepads Game::sGamepads;
+
 /*quick way to configure a model
 * m - IN/OUT model
 * source - IN mesh to use
@@ -55,6 +58,9 @@ void Game::Initialise()
 	mpFont = new SpriteFont(&d3d.GetDevice(), L"../bin/data/fonts/algerian.spritefont");
 	assert(mpFont);
 
+	sMKIn.Initialise(WinUtil::Get().GetMainWnd(), true, false);
+	sGamepads.Initialise();
+
 	Load();
 }
 
@@ -69,6 +75,7 @@ void Game::Release()
 int dir = 1;
 void Game::Update(float dTime)
 {	
+	Game::elapsed = dTime;
 	float pos = mModels[Modelid::BIRD].GetPosition().y;
 	if (pos > 1 && dir > 0)
 	{
@@ -79,7 +86,7 @@ void Game::Update(float dTime)
 		dir = -dir;
 	}
 	
-	mModels[Modelid::BIRD].GetPosition().y += dir * dTime;
+	//mModels[Modelid::BIRD].GetPosition().y += dir * dTime;
 
 	mModels[Modelid::BIRD].GetRotation().y += (3 * dTime);
 }
@@ -108,12 +115,14 @@ void Game::RenderGame(float dTime)
 		d3d.GetFX().Render(mod);
 
 	d3d.EndRender();
+	sMKIn.PostProcess();
 }
 
 //push the camera around and check for exit
 LRESULT Game::WindowsMssgHandler(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-	const float camInc = 200.f * GetElapsedSec();
+	const float camInc = 200.f * Game::elapsed;
+
 	//do something game specific here
 	switch (msg)
 	{
@@ -126,26 +135,27 @@ LRESULT Game::WindowsMssgHandler(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPar
 		case 'Q':
 			PostQuitMessage(0);
 			return 0;
+		
 		case 'a':
-			mCamPos.y += camInc;
+			Game::mCamPos.y += camInc;
 			break;
 		case 'z':
-			mCamPos.y -= camInc;
+			Game::mCamPos.y -= camInc;
 			break;
 		case 'd':
-			mCamPos.x -= camInc;
+			Game::mCamPos.x -= camInc;
 			break;
 		case 'f':
-			mCamPos.x += camInc;
+			Game::mCamPos.x += camInc;
 			break;
 		case 'w':
-			mCamPos.z += camInc;
+			Game::mCamPos.z += camInc;
 			break;
 		case 's':
-			mCamPos.z -= camInc;
+			Game::mCamPos.z -= camInc;
 			break;
 		case ' ':
-			mCamPos = mDefCamPos;
+			Game::mCamPos = Game::mDefCamPos;
 			break;
 		}
 	}

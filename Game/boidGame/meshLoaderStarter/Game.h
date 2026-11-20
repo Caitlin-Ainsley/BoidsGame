@@ -1,6 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include "Input.h"
 #include <future>
 #include "SpriteBatch.h"
 #include "SpriteFont.h"
@@ -20,6 +21,11 @@ public:
 	~Game() {
 		Release();
 	}
+	enum class State { PLAY };
+	static MouseAndKeys sMKIn;
+	static Gamepads sGamepads;
+	State state = State::PLAY;
+
 	void Update(float dTime);
 	void Render(float dTime);
 	void Initialise();
@@ -33,6 +39,8 @@ public:
 	//stick all models in a vector and use an enum to index them
 	std::vector<GameObject> mModels;
 	enum Modelid { BIRD, TOTAL=1 }; 
+
+	float elapsed = 0;
 
 private:
 
