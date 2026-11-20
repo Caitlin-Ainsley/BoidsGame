@@ -32,7 +32,7 @@ public:
 
 	//stick all models in a vector and use an enum to index them
 	std::vector<GameObject> mModels;
-	enum Modelid { FLOOR, BACK_WALL, LEFT_WALL, BOX, CROSS, CROSS2, WINDOW, WINDOW2, TOTAL=8 }; 
+	enum Modelid { BIRD, TOTAL=1 }; 
 
 private:
 
