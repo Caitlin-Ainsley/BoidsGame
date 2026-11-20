@@ -53,23 +53,23 @@ public:
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//	Trivial Accessors
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	const DirectX::SimpleMath::Vector3	 GetPosition()						   const	{ return position;				   }
-	const DirectX::SimpleMath::Vector3	 GetDirection()						   const	{ return direction;				   }
-	const float							 GetFov()							   const	{ return fov;					   }
-	const float							 GetNearPlane()						   const	{ return nearPlane;				   }
-	const float							 GetFarPlane()						   const	{ return farPlane;				   }
-	const DirectX::SimpleMath::Vector2	 GetAspectRatio()					   const	{ return aspectRatio;			   }
-	const GameObject*					 GetParent()						   const	{ return parent;				   }
-	const bool							 GetUsePerspectiveProjection()		   const	{ return usePerspectiveProjection; }
-
-	void SetPosition				 ( DirectX::SimpleMath::Vector3 newPosition    )	{ position				   = newPosition;				}
-	void SetDirection				 ( DirectX::SimpleMath::Vector3 newDirection   )	{ direction				   = newDirection;				}
-	void SetFov						 ( float newFov								   )	{ fov					   = newFov;					}
-	void SetNearPlane				 ( float newNearPlane						   )	{ nearPlane				   = newNearPlane;				}
-	void SetFarPlane				 ( float newFarPlane						   )	{ farPlane				   = newFarPlane;				}
-	void SetAspectRatio				 ( DirectX::SimpleMath::Vector2 newAspectRatio )	{ aspectRatio			   = newAspectRatio;			}
-	void SetParent					 ( GameObject* newParent					   )	{ parent				   = newParent;					}
-	void SetUsePerspectiveProjection ( bool newUsePerspectivePosition			   )	{ usePerspectiveProjection = newUsePerspectivePosition; }
+	const DirectX::SimpleMath::Vector3	 GetPosition()						   const  { return position;				 }
+	const DirectX::SimpleMath::Vector3	 GetDirection()						   const  { return direction;				 }
+	const float							 GetFov()							   const  { return fov;						 }
+	const float							 GetNearPlane()						   const  { return nearPlane;				 }
+	const float							 GetFarPlane()						   const  { return farPlane;				 }
+	const DirectX::SimpleMath::Vector2	 GetAspectRatio()					   const  { return aspectRatio;				 }
+	const GameObject*					 GetParent()						   const  { return parent;				     }
+	const bool							 GetUsePerspectiveProjection()		   const  { return usePerspectiveProjection; }
+																					  
+	void SetPosition				 ( DirectX::SimpleMath::Vector3 newPosition    )  { position				   = newPosition;			  }
+	void SetDirection				 ( DirectX::SimpleMath::Vector3 newDirection   )  { direction				   = newDirection;			  }
+	void SetFov						 ( float newFov								   )  { fov					   = newFov;					  }
+	void SetNearPlane				 ( float newNearPlane						   )  { nearPlane				   = newNearPlane;			  }
+	void SetFarPlane				 ( float newFarPlane						   )  { farPlane				   = newFarPlane;			  }
+	void SetAspectRatio				 ( DirectX::SimpleMath::Vector2 newAspectRatio )  { aspectRatio			   = newAspectRatio;			  }
+	void SetParent					 ( GameObject* newParent					   )  { parent				   = newParent;					  }
+	void SetUsePerspectiveProjection ( bool newUsePerspectivePosition			   )  { usePerspectiveProjection = newUsePerspectivePosition; }
 };
 
 
