@@ -1,5 +1,5 @@
 #include "FX.h"
-#include "Model.h"
+#include "GameObject.h"
 #include "WindowUtils.h"
 #include "Mesh.h"
 

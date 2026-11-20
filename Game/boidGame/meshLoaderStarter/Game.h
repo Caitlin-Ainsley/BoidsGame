@@ -6,7 +6,7 @@
 #include "SpriteFont.h"
 
 #include "Mesh.h"
-#include "Model.h"
+#include "GameObject.h"
 #include "singleton.h"
 
 /*

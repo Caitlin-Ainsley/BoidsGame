@@ -5,7 +5,7 @@
 #include "D3DUtil.h"
 #include "FX.h"
 #include "WindowUtils.h"
-#include "Model.h"
+#include "GameObject.h"
 
 using namespace std;
 using namespace DirectX;
