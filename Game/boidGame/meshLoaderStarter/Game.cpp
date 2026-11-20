@@ -40,7 +40,7 @@ void Game::Load()
 
 	Mesh& birdMesh = d3d.GetMeshMgr().CreateMesh("bird");
 	birdMesh.CreateFrom("data/bird/Bird.obj", d3d);
-	Setup(mModels[Modelid::BIRD], birdMesh, 1.0f, Vector3(0, 0, -2), Vector3(PI / 2.f, 0, 0));
+	Setup(mModels[Modelid::BIRD], birdMesh, 1.0f, Vector3(0, 0, -2), Vector3(0, PI, 0));
 
 	//the sun
 	d3d.GetFX().SetupDirectionalLight(0, true, Vector3(-0.7f, -0.7f, 0.7f), Vector3(0.47f, 0.47f, 0.47f), Vector3(0.15f, 0.15f, 0.15f), Vector3(0.25f, 0.25f, 0.25f));
@@ -66,10 +66,22 @@ void Game::Release()
 	delete mpFont;
 	mpFont = nullptr;
 }
-
+int dir = 1;
 void Game::Update(float dTime)
-{
+{	
+	float pos = mModels[Modelid::BIRD].GetPosition().y;
+	if (pos > 1 && dir > 0)
+	{
+		dir = -dir;
+	}
+	else if (pos < 0 && dir < 0)
+	{
+		dir = -dir;
+	}
+	
+	mModels[Modelid::BIRD].GetPosition().y += dir * dTime;
 
+	mModels[Modelid::BIRD].GetRotation().y += (3 * dTime);
 }
 
 void Game::Render(float dTime)
