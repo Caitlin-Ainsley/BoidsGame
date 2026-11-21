@@ -9,59 +9,119 @@
 #include "D3D.h"
 #include "SimpleMath.h"
 
-/*ideally we'd create a complete set of our key codes
-completely independently of windows, but as I'm lazy
-I'll just add a few extra codes to the VK_ list windows
-provides in "winuser.h", to make it more consistent.
-*/
-#define VK_NUMPAD_ENTER 0xF0		//these three are very naughty
-#define VK_LALT			0xF1		//they are actually some oem
-#define VK_RALT			0xF2		//keys ATTN/FINISH/COPY - but lets pinch them :)
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//	Key Codes
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#define VK_0		0x30	// 0 key
+#define VK_1		0x31	// 1 key
+#define VK_2		0x32	// 2 key
+#define VK_3		0x33	// 3 key
+#define VK_4		0x34	// 4 key
+#define VK_5		0x35	// 5 key
+#define VK_6		0x36	// 6 key
+#define VK_7		0x37	// 7 key
+#define VK_8		0x38	// 8 key
+#define VK_9		0x39	// 9 key
 
-#define VK_0	0x30
-#define VK_1	0x31
-#define VK_2	0x32
-#define VK_3	0x33
-#define VK_4	0x34
-#define VK_5	0x35
-#define VK_6	0x36
-#define VK_7	0x37
-#define VK_8	0x38
-#define VK_9	0x39
-//these codes match ascii
-#define VK_A	0x41
-#define VK_B	0x42
-#define VK_C	0x43
-#define VK_D	0x44
-#define VK_E	0x45
-#define VK_F	0x46
-#define VK_G	0x47
-#define VK_H	0x48
-#define VK_I	0x49
-#define VK_J	0x4a
-#define VK_K	0x4b
-#define VK_L	0x4c
-#define VK_M	0x4d
-#define VK_N	0x4e
-#define VK_O	0x4f
-#define VK_P	0x50
-#define VK_Q	0x51
-#define VK_R	0x52
-#define VK_S	0x53
-#define VK_T	0x54
-#define VK_U	0x55
-#define VK_V	0x56
-#define VK_W	0x57
-#define VK_X	0x58
-#define VK_Y	0x59
-#define VK_Z	0x5a
+#define VK_NUMPAD0	0x60	// Numeric keypad 0 key
+#define VK_NUMPAD1	0x61	// Numeric keypad 1 key
+#define VK_NUMPAD2	0x62	// Numeric keypad 2 key
+#define VK_NUMPAD3	0x63	// Numeric keypad 3 key
+#define VK_NUMPAD4	0x64	// Numeric keypad 4 key
+#define VK_NUMPAD5	0x65	// Numeric keypad 5 key
+#define VK_NUMPAD6	0x66	// Numeric keypad 6 key
+#define VK_NUMPAD7	0x67	// Numeric keypad 7 key
+#define VK_NUMPAD8	0x68	// Numeric keypad 8 key
+#define VK_NUMPAD9	0x69	// Numeric keypad 9 key
+
+#define VK_F1		0x70	// F1 key
+#define VK_F2		0x71	// F2 key
+#define VK_F3		0x72	// F3 key
+#define VK_F4		0x73	// F4 key
+#define VK_F5		0x74	// F5 key
+#define VK_F6		0x75	// F6 key
+#define VK_F7		0x76	// F7 key
+#define VK_F8		0x77	// F8 key
+#define VK_F9		0x78	// F9 key
+#define VK_F10		0x79	// F10 key
+#define VK_F11		0x7A	// F11 key
+#define VK_F12		0x7B	// F12 key
+
+#define VK_A		0x41	// A key
+#define VK_B		0x42	// B key
+#define VK_C		0x43	// C key
+#define VK_D		0x44	// D key
+#define VK_E		0x45	// E key
+#define VK_F		0x46	// F key
+#define VK_G		0x47	// G key
+#define VK_H		0x48	// H key
+#define VK_I		0x49	// I key
+#define VK_J		0x4A	// J key
+#define VK_K		0x4B	// K key
+#define VK_L		0x4C	// L key
+#define VK_M		0x4D	// M key
+#define VK_N		0x4E	// N key
+#define VK_O		0x4F	// O key
+#define VK_P		0x50	// P key
+#define VK_Q		0x51	// Q key
+#define VK_R		0x52	// R key
+#define VK_S		0x53	// S key
+#define VK_T		0x54	// T key
+#define VK_U		0x55	// U key
+#define VK_V		0x56	// V key
+#define VK_W		0x57	// W key
+#define VK_X		0x58	// X key
+#define VK_Y		0x59	// Y key
+#define VK_Z		0x5A	// Z key
+
+#define VK_UP		0x26	// Up arrow key
+#define VK_DOWN		0x28	// Down arrow key
+#define VK_LEFT		0x25	// Left arrow key
+#define VK_RIGHT	0x27	// Right arrow key
+
+#define VK_LALT		0x12	// Left Alt key
+#define VK_RALT		0x13	// Right Alt key
+#define VK_CTRL		0x11	// Control key
+#define VK_LCTRL	0xA2	// Left Control key
+#define VK_RCTRL	0xA3	// Right Control key
+#define VK_LSHIFT	0xA0	// Left Shift key
+#define VK_RSHIFT	0xA1	// Right Shift key
+#define VK_LWIN		0x5B	// Left Windows key
+#define VK_RWIN		0x5C	// Right Windows key
+
+#define VK_BACK		0x08	// Backspace key
+#define VK_TAB		0x09	// Tab key
+#define VK_RETURN	0x0D	// Enter key
+#define VK_CAPITAL	0x14	// Caps lock key
+#define VK_ESCAPE	0x1B	// Escape key
+#define VK_SPACE	0x20	// Space key
+
+#define VK_LBUTTON	0x01	// Left mouse button
+#define VK_RBUTTON	0x02	// Right mouse button
+#define VK_MBUTTON	0x04	// Middle mouse button
+#define VK_XBUTTON1	0x05	// X1 mouse button
+#define VK_XBUTTON2	0x06	// X2 mouse button
+
+#define VK_VOLUME_MUTE		0xAD	// Volume mute key
+#define VK_VOLUME_UP		0xAF	// Volume up key
+#define VK_VOLUME_DOWN		0xAE	// Volume down key
 
 /*
 Mouse and keyboard need to bypass the normal windows messages as we
 don't want repeat delays and other user-configurable interference.
 This class uses rawinput of keyboard and mouse data
 */
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//	Classname	: MouseAndKeys
+//	Author		: ? - Adapted by Caitlin Bruce
+//	Date		: 21/11/2026
+//	Description : This class manages the input handling for mouse and keyboard with DX11
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class MouseAndKeys
 {
 public:
@@ -132,83 +192,6 @@ private:
 	void ProcessKeys(RAWINPUT* raw);
 	void ProcessMouse(RAWINPUT* raw);
 	void GetMousePosAbsolute(DirectX::SimpleMath::Vector2& pos);
-};
-
-
-
-/*
-Simple input handler
-Only supports the first controller detected, but easy to add support for more.
-*/
-class Gamepads
-{
-public:
-	//gamepad data, one per pad
-	struct State
-	{
-		int port = -1;
-		float leftStickX = 0;
-		float leftStickY = 0;
-		float rightStickX = 0;
-		float rightStickY = 0;
-		float leftTrigger = 0;
-		float rightTrigger = 0;
-		float deadzoneX = 0.1f;
-		float deadzoneY = 0.1f;
-		XINPUT_STATE state;
-	};
-	//as a mechanical device the pad may generate data even when
-	//nobody is touching it, especially if it's old. The deadzone
-	//specifies a small range of input that will be ignored.
-	//idx=which pad
-	//x+y=range to ignore
-	void SetDeadZone(int idx, float x, float y) {
-		assert(idx >= 0 && idx < XUSER_MAX_COUNT);
-		mPads[idx].deadzoneX = x;
-		mPads[idx].deadzoneY = y;
-	}
-	//look at the state of a pad
-	//idx=pad 0,1,2 or 3
-	const State& GetState(int idx) const {
-		assert(idx >= 0 && idx < XUSER_MAX_COUNT);
-		return mPads[idx];
-	}
-	//called once at startup
-	void Initialise();
-	//check that a specific pad is still plugged in
-	bool IsConnected(int idx) {
-		assert(idx >= 0 && idx < XUSER_MAX_COUNT);
-		return mPads[idx].port != -1;
-	}
-	//called every update
-	void Update();
-
-	/*
-	Is the user holding down a button or stick
-	XINPUT_GAMEPAD_DPAD_UP
-	XINPUT_GAMEPAD_DPAD_DOWN
-	XINPUT_GAMEPAD_DPAD_LEFT
-	XINPUT_GAMEPAD_DPAD_RIGHT
-	XINPUT_GAMEPAD_START
-	XINPUT_GAMEPAD_BACK
-	XINPUT_GAMEPAD_LEFT_THUMB
-	XINPUT_GAMEPAD_RIGHT_THUMB
-	XINPUT_GAMEPAD_LEFT_SHOULDER
-	XINPUT_GAMEPAD_RIGHT_SHOULDER
-	XINPUT_GAMEPAD_A
-	XINPUT_GAMEPAD_B
-	XINPUT_GAMEPAD_X
-	XINPUT_GAMEPAD_Y
-	*/
-	bool IsPressed(int idx, unsigned short buttonId);
-	//get a list of pad activity - motion of sticks and triggers
-	void GetAnalogueNames(int idx, std::wstring& mssg);
-	//get a list of pad activity - button presses
-	void GetDigitalNames(int idx, std::wstring& mssg);
-private:
-	//a copy of state for each of 4 pads
-	State mPads[XUSER_MAX_COUNT];
-
 };
 
 
