@@ -1,7 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "Input.h"
+#include "InputManager.h"
 #include <future>
 #include "SpriteBatch.h"
 #include "SpriteFont.h"
@@ -23,7 +23,6 @@ public:
 	}
 	enum class State { PLAY };
 	static MouseAndKeys sMKIn;
-	static Gamepads sGamepads;
 	State state = State::PLAY;
 
 	void Update(float dTime);

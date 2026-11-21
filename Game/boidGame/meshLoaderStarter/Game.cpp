@@ -8,7 +8,6 @@ using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
 MouseAndKeys Game::sMKIn;
-Gamepads Game::sGamepads;
 
 /*quick way to configure a model
 * m - IN/OUT model
@@ -59,7 +58,6 @@ void Game::Initialise()
 	assert(mpFont);
 
 	sMKIn.Initialise(WinUtil::Get().GetMainWnd(), true, false);
-	sGamepads.Initialise();
 
 	Load();
 }
