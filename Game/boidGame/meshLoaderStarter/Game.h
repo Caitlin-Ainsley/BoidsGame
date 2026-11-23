@@ -37,7 +37,7 @@ public:
 
 	//stick all models in a vector and use an enum to index them
 	std::vector<GameObject> mModels;
-	enum Modelid { BIRD, TOTAL=1 }; 
+	enum Modelid {MOUNTAINS, BIRD, TOTAL=2 }; 
 
 	float elapsed = 0;
 private:

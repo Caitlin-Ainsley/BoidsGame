@@ -139,14 +139,18 @@ public:
 	//showMouse - hide the mouse cursor
 	//confineMouse - prevent the mouse leaving the window
 	void Initialise(HWND hwnd, bool showMouse = true, bool confineMouse = false);
+
 	//a text list of all keys being held down
 	void GetPressedKeyNames(std::wstring& mssg);
+
 	//is a specific key down?
 	bool IsPressed(unsigned short vkeyCode) const;
+
 	//a text list of all mouse buttons and cursor position info
 	void GetMouseNames(std::wstring& mssg);
+
 	//check if a button is currently down
-	typedef enum { LBUTTON = 0, MBUTTON = 1, RBUTTON = 2 } ButtonT;
+	typedef enum { LBUTTON = 0, MBUTTON = 1, RBUTTON = 2, X1BUTTON = 3, X2BUTTON = 4} ButtonT;
 	bool GetMouseButton(ButtonT b) const {
 		return mButtons[b];
 	}

@@ -40,12 +40,19 @@ void Game::Load()
 	Mesh& quadMesh = BuildQuad(d3d.GetMeshMgr());
 	Mesh& cubeMesh = BuildCube(d3d.GetMeshMgr());
 
+	// Bird mesh
 	Mesh& birdMesh = d3d.GetMeshMgr().CreateMesh("bird");
 	birdMesh.CreateFrom("data/bird/Bird.obj", d3d);
-	Setup(mModels[Modelid::BIRD], birdMesh, 1.0f, Vector3(0, 0, -2), Vector3(0, PI, 0));
+	Setup(mModels[Modelid::BIRD], birdMesh, 1.0f, Vector3(0, 20, -2), Vector3(0, PI, 0));
+
+	// Terrain mesh
+	Mesh& mountainsMesh = d3d.GetMeshMgr().CreateMesh("mountains");
+	mountainsMesh.CreateFrom("data/mountains/Mountains.fbx", d3d);
+	Setup(mModels[Modelid::MOUNTAINS], mountainsMesh, 100.0f, Vector3(0, 0, 0), Vector3(PI / 2, 0, 0));
 
 	//the sun
-	d3d.GetFX().SetupDirectionalLight(0, true, Vector3(-0.7f, -0.7f, 0.7f), Vector3(0.47f, 0.47f, 0.47f), Vector3(0.15f, 0.15f, 0.15f), Vector3(0.25f, 0.25f, 0.25f));
+	d3d.GetFX().SetupPointLight(0, true, Vector3(100.0f, 500.0f, 100.0f), Vector3(0.9f, 0.9f, 0.9f), Vector3(0.1f, 0.1f, 0.3f), Vector3(0.55f, 0.45f, 0.15f), 10000.0f, 0.0025f);
+											//Position					diffuse						ambient						specular					range  attenuation
 }
 
 void Game::Initialise()
@@ -119,26 +126,56 @@ void Game::RenderGame(float dTime)
 //push the camera around and check for exit
 LRESULT Game::WindowsMssgHandler(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-	const float camInc = 200.f * Game::elapsed;
+	const float camInc = 2000.f * Game::elapsed;
 
 	//do something game specific here
 	switch (msg)
 	{
 		// Respond to a keyboard event.
 	case WM_CHAR:
-		//switch (wParam)
-		//{
-		//case 27:
-		//case 'q':
-		//case 'Q':
-		//	PostQuitMessage(0);
-		//	return 0;
+		switch (wParam)
+		{
+		case 27:
+		case 'q':
+		case 'Q':
+			PostQuitMessage(0);
+			return 0;
 
-		//case ' ':
-		//	Game::mCamPos = Game::mDefCamPos;
-		//	break;
-		//}
-		break;
+		case 'a':
+		case 'A':
+			Game::mCamPos.x -= camInc;
+			break;
+
+		case 'd':
+		case 'D':
+			Game::mCamPos.x += camInc;
+			break;
+
+		case 's':
+		case 'S':
+			Game::mCamPos.z -= camInc;
+			break;
+
+		case 'w':
+		case 'W':
+			Game::mCamPos.z += camInc;
+			break;
+
+		case 'f':
+		case 'F':
+			Game::mCamPos.y += camInc;
+			break;
+
+		case 'c':
+		case 'C':
+			Game::mCamPos.y -= camInc;
+			break;
+
+
+		case ' ':
+			Game::mCamPos = Game::mDefCamPos;
+			break;
+		}
 	}
 
 	
