@@ -1,7 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "InputManager.h"
+#include "Input.h"
 #include <future>
 #include "SpriteBatch.h"
 #include "SpriteFont.h"
@@ -22,7 +22,7 @@ public:
 		Release();
 	}
 	enum class State { PLAY };
-	static MouseAndKeys sMKIn;
+	static InputManager sMKIn; // static Mouse Keyboard Input
 	State state = State::PLAY;
 
 	void Update(float dTime);
@@ -40,7 +40,6 @@ public:
 	enum Modelid { BIRD, TOTAL=1 }; 
 
 	float elapsed = 0;
-
 private:
 
 	//spin some models around

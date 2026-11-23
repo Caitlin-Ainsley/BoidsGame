@@ -112,16 +112,17 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //	Classname	: MouseAndKeys
-//	Author		: ? - Adapted by Caitlin Bruce
+//	Author		: Caitlin Bruce
 //	Date		: 21/11/2026
 //	Description : This class manages the input handling for mouse and keyboard with DX11
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-class MouseAndKeys
+
+class InputManager
 {
 public:
-	MouseAndKeys()
+	InputManager()
 	{
 		Reset();
 
@@ -170,19 +171,20 @@ public:
 	void MessageEvent(HRAWINPUT rawInput);
 
 private:
-	//copy of main window handle
-	HWND mHwnd;
-	enum { RAWBUFF_SIZE = 512, KEYBUFF_SIZE = 255, KMASK_IS_DOWN = 1, MAX_BUTTONS = 3 };
-	//raw input buffer
-	BYTE mInBuffer[RAWBUFF_SIZE];
+	
+	HWND mHwnd; //copy of main window handle
+
+	enum { RAWBUFF_SIZE = 512, KEYBUFF_SIZE = 255, KMASK_IS_DOWN = 1, MAX_BUTTONS = 5 };
+	BYTE mInBuffer[RAWBUFF_SIZE]; //raw input buffer
+
 	unsigned short mKeyBuffer[KEYBUFF_SIZE];  //virtual key codes, but only the standard ones (first 256)
-	//support for three mouse buttons
-	bool mButtons[MAX_BUTTONS];
-	//track mouse position changes (2D)
-	DirectX::SimpleMath::Vector2 mMouseScreen, mMouseMove;
-	//if the mouse is confined, track the size of the window
-	bool mConfineMouse;
-	RECT mNewClip;           // new area for ClipCursor
+	
+	bool mButtons[MAX_BUTTONS]; //support for five mouse buttons
+	
+	DirectX::SimpleMath::Vector2 mMouseScreen, mMouseMove; //track mouse position changes (2D)
+	
+	bool mConfineMouse;		//if the mouse is confined, track the size of the window
+	RECT mNewClip;         // new area for ClipCursor
 	RECT mOldClip;        // previous area for ClipCursor
 
 	void ProcessKeys(RAWINPUT* raw);

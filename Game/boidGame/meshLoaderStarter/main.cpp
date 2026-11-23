@@ -16,7 +16,9 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		// Respond to a keyboard event.
 	case WM_CHAR:
 	case WM_INPUT:
+		Game::sMKIn.MessageEvent((HRAWINPUT)lParam);
 		return Game::Get().WindowsMssgHandler(hwnd, msg, wParam, lParam);
+
 	}
 	return WinUtil::DefaultMssgHandler(hwnd, msg, wParam, lParam);
 }

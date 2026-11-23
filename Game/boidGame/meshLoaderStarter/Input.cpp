@@ -16,7 +16,7 @@ using namespace DirectX::SimpleMath;
 
 
 //-------------------------------------------------------------
-bool MouseAndKeys::IsPressed(unsigned short vkeyCode) const
+bool InputManager::IsPressed(unsigned short vkeyCode) const
 {
 	assert(vkeyCode < KEYBUFF_SIZE);
 	bool pressed = mKeyBuffer[vkeyCode] != 0;
@@ -24,7 +24,7 @@ bool MouseAndKeys::IsPressed(unsigned short vkeyCode) const
 	return pressed;
 }
 
-void MouseAndKeys::ProcessKeys(RAWINPUT* raw)
+void InputManager::ProcessKeys(RAWINPUT* raw)
 {
 	//standard key code
 	unsigned short flags = raw->data.keyboard.Flags;
@@ -96,7 +96,7 @@ void MouseAndKeys::ProcessKeys(RAWINPUT* raw)
 		mKeyBuffer[vkey] = scanCode;
 }
 
-void MouseAndKeys::ProcessMouse(RAWINPUT* raw)
+void InputManager::ProcessMouse(RAWINPUT* raw)
 {
 	unsigned short flags = raw->data.mouse.usButtonFlags;
 
@@ -118,7 +118,7 @@ void MouseAndKeys::ProcessMouse(RAWINPUT* raw)
 	mMouseMove = mMouseScreen - last;
 }
 
-void MouseAndKeys::GetMousePosAbsolute(Vector2& pos)
+void InputManager::GetMousePosAbsolute(Vector2& pos)
 {
 	POINT mpos;
 	if (GetCursorPos(&mpos))
@@ -131,7 +131,7 @@ void MouseAndKeys::GetMousePosAbsolute(Vector2& pos)
 		
 }
 
-void MouseAndKeys::MessageEvent(HRAWINPUT rawInput)
+void InputManager::MessageEvent(HRAWINPUT rawInput)
 {
 	UINT dwSize;
 
@@ -163,7 +163,7 @@ void MouseAndKeys::MessageEvent(HRAWINPUT rawInput)
 	}
 }
 
-void MouseAndKeys::GetPressedKeyNames(wstring& mssg)
+void InputManager::GetPressedKeyNames(wstring& mssg)
 {
 	mssg = L"";
 	for (int i = 0; i < KEYBUFF_SIZE; ++i)
@@ -200,7 +200,7 @@ void MouseAndKeys::GetPressedKeyNames(wstring& mssg)
 
 
 
-void MouseAndKeys::GetMouseNames(wstring& mssg)
+void InputManager::GetMouseNames(wstring& mssg)
 {
 	mssg = L"";
 	static float oldX = 0, oldY = 0;
@@ -222,7 +222,7 @@ void MouseAndKeys::GetMouseNames(wstring& mssg)
 	mssg = str.str();
 }
 
-void MouseAndKeys::Initialise(HWND hwnd, bool showMouse, bool confineMouse)
+void InputManager::Initialise(HWND hwnd, bool showMouse, bool confineMouse)
 {
 	mHwnd = hwnd;
 
@@ -260,19 +260,19 @@ void MouseAndKeys::Initialise(HWND hwnd, bool showMouse, bool confineMouse)
 	GetMousePosAbsolute(mMouseScreen);
 }
 
-void MouseAndKeys::OnLost()
+void InputManager::OnLost()
 {
 	Reset();
 	ClipCursor(&mOldClip);
 }
 
-void MouseAndKeys::OnReset()
+void InputManager::OnReset()
 {
 	Reset();
 	ClipCursor(&mNewClip);
 }
 
-void MouseAndKeys::PostProcess()
+void InputManager::PostProcess()
 {
 	mMouseMove.x = 0;
 	mMouseMove.y = 0;

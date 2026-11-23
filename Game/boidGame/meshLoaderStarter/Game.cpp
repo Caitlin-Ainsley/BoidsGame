@@ -7,7 +7,7 @@ using namespace std;
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
-MouseAndKeys Game::sMKIn;
+InputManager Game::sMKIn;
 
 /*quick way to configure a model
 * m - IN/OUT model
@@ -126,44 +126,22 @@ LRESULT Game::WindowsMssgHandler(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPar
 	{
 		// Respond to a keyboard event.
 	case WM_CHAR:
-		if (wParam == 'a')
-		{
-			Game::mCamPos.y += camInc;
-		}
-		if (wParam == 'z')
-		{
-			Game::mCamPos.y -= camInc;
-		}
-		if (wParam == 'w')
-		{
-			Game::mCamPos.z += camInc;
-		}
-		if (wParam == 's')
-		{
-			Game::mCamPos.z -= camInc;
-		}
-		if (wParam == 'd')
-		{
-			Game::mCamPos.x -= camInc;
-		}
-		if (wParam == 'f')
-		{
-			Game::mCamPos.x += camInc;
-		}
+		//switch (wParam)
+		//{
+		//case 27:
+		//case 'q':
+		//case 'Q':
+		//	PostQuitMessage(0);
+		//	return 0;
 
-		switch (wParam)
-		{
-		case 27:
-		case 'q':
-		case 'Q':
-			PostQuitMessage(0);
-			return 0;
-
-		case ' ':
-			Game::mCamPos = Game::mDefCamPos;
-			break;
-		}
+		//case ' ':
+		//	Game::mCamPos = Game::mDefCamPos;
+		//	break;
+		//}
+		break;
 	}
+
+	
 	//default message handling (resize window, full screen, etc)
 	return WinUtil::Get().DefaultMssgHandler(hwnd, msg, wParam, lParam);
 }
