@@ -47,11 +47,16 @@ void Game::Load()
 
 	// Terrain mesh
 	Mesh& mountainsMesh = d3d.GetMeshMgr().CreateMesh("mountains");
-	mountainsMesh.CreateFrom("data/mountains/Mountains.fbx", d3d);
-	Setup(mModels[Modelid::MOUNTAINS], mountainsMesh, 100.0f, Vector3(0, 0, 0), Vector3(PI / 2, 0, 0));
+	mountainsMesh.CreateFrom("data/mountains/Mountains.obj", d3d);
+	Setup(mModels[Modelid::MOUNTAINS], mountainsMesh, 100.0f, Vector3(0, 0, 0), Vector3(0, 0, 0));
+
+	// Hdri mesh
+	Mesh& hdriMesh = d3d.GetMeshMgr().CreateMesh("semisphere");
+	hdriMesh.CreateFrom("data/HDRI/HDRI.obj", d3d);
+	Setup(mModels[Modelid::HDRI], hdriMesh, 100.0f, Vector3(0, 0, 0), Vector3(0, 0, 0));
 
 	//the sun
-	d3d.GetFX().SetupPointLight(0, true, Vector3(100.0f, 500.0f, 100.0f), Vector3(0.9f, 0.9f, 0.9f), Vector3(0.1f, 0.1f, 0.3f), Vector3(0.55f, 0.45f, 0.15f), 10000.0f, 0.0025f);
+	d3d.GetFX().SetupPointLight(0, true, Vector3(100.0f, 500.0f, 100.0f), Vector3(0.9f, 0.9f, 0.8f), Vector3(0.1f, 0.1f, 0.2f), Vector3(0.65f, 0.55f, 0.25f), 10000.0f, 0.0025f);
 											//Position					diffuse						ambient						specular					range  attenuation
 }
 
