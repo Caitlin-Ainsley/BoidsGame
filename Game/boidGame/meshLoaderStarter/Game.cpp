@@ -52,8 +52,15 @@ void Game::Load()
 
 	// Hdri mesh
 	Mesh& hdriMesh = d3d.GetMeshMgr().CreateMesh("semisphere");
-	hdriMesh.CreateFrom("data/HDRI/HDRI.obj", d3d);
-	Setup(mModels[Modelid::HDRI], hdriMesh, 100.0f, Vector3(0, 0, 0), Vector3(0, 0, 0));
+	hdriMesh.CreateFrom("data/HDRI/HDRI.fbx", d3d);
+	Setup(mModels[Modelid::HDRI], hdriMesh, 100.0f, Vector3(0, 0, 0), Vector3(PI/2, 0, 0));
+	// Hdri material
+	Material hdriMat = mModels[Modelid::HDRI].GetMesh().GetSubMesh(0).material;
+	hdriMat.gfxData.Set(Vector4(1, 1, 1, 1), Vector4(1, 1, 1, 1), Vector4(1, 1, 1, 1));
+	Material::TFlags litFlag = Material::TFlags::LIT;
+	hdriMat.flags &= ~litFlag;
+	hdriMat.texture = "data/HDRI/HDRI.dds";
+	mModels[Modelid::HDRI].SetOverrideMat(&hdriMat);
 
 	//the sun
 	d3d.GetFX().SetupPointLight(0, true, Vector3(100.0f, 500.0f, 100.0f), Vector3(0.9f, 0.9f, 0.8f), Vector3(0.1f, 0.1f, 0.2f), Vector3(0.65f, 0.55f, 0.25f), 10000.0f, 0.0025f);
@@ -122,7 +129,9 @@ void Game::RenderGame(float dTime)
 
 	//render all models
 	for (auto& mod : mModels)
+	{
 		d3d.GetFX().Render(mod);
+	}
 
 	d3d.EndRender();
 	sMKIn.PostProcess();
