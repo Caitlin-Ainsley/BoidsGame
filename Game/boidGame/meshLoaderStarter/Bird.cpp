@@ -1,4 +1,5 @@
 #include "Bird.h"
+#include <math.h>
 
 void Bird::Initialise(Mesh &mesh, float newBirdSpeed, float newPitchStrength, float newRollStrength)
 {
@@ -31,9 +32,14 @@ void Bird::rollRight(float dTime)
 }
 void Bird::moveForward(float dTime)
 {
-	float lX = 1.0f;	// l - Local  :  Switch to actual calculation
-	float lY = 1.0f;	// l - Local  :  Switch to actual calculation
-	float lZ = 1.0f;	// l - Local  :  Switch to actual calculation
+	float xTheta = mRotation.x;
+	float yTheta = mRotation.y;
+	float zTheta = mRotation.z;
+
+	// l - Local
+	float lX = sin(xTheta) + cos(yTheta);
+	float lY = cos(xTheta) + sin(zTheta);
+	float lZ = cos(zTheta) + sin(yTheta);
 
 	DirectX::SimpleMath::Vector3 localAxisForward = DirectX::SimpleMath::Vector3(lX, lY, lZ);	// Make a vector of our directions
 	localAxisForward.Normalize();	// Normalise vector to ensure consistent speed
