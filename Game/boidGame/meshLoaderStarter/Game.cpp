@@ -49,6 +49,7 @@ void Game::Load()
 	player.Initialise(birdMesh, 5, 1, 1);
 	player.GetPosition() = Vector3(0, 20, -20);
 	player.GetRotation() = Vector3(0, 0, 0);
+	player.UpdateLocalAxis();
 	// Set up boids:
 		//
 		//

@@ -15,22 +15,26 @@ void Bird::Initialise(Mesh &mesh, float newBirdSpeed, float newPitchStrength, fl
 }
 void Bird::pitchDown(float dTime)
 {
-	mRotation.x += pitchStrength * dTime;
+	RotateAroundAxis(rightAxis, pitchStrength * dTime);
 }
 void Bird::pitchUp(float dTime)
 {
-	mRotation.x -= pitchStrength * dTime;
+	RotateAroundAxis(rightAxis, -pitchStrength * dTime);
 }
 void Bird::rollLeft(float dTime)
 {
-	mRotation.z -= rollStrength * dTime;
+	RotateAroundAxis(forwardAxis, -pitchStrength * dTime);
 }
 void Bird::rollRight(float dTime)
 {
-	mRotation.z += rollStrength * dTime;
+	RotateAroundAxis(forwardAxis, pitchStrength * dTime);
 }
 void Bird::moveForward(float dTime)
 {
+	DBOUT("FORWARD");
+	DBOUT((forwardAxis * birdSpeed * dTime).x);
+	DBOUT((forwardAxis * birdSpeed * dTime).y);
+	DBOUT((forwardAxis * birdSpeed * dTime).z);
 	mPosition += forwardAxis * birdSpeed * dTime;
 }
 
