@@ -36,7 +36,7 @@ void GameObject::RotateAroundAxis(Vector3 k, float theta) // where k is a unit v
 
 	Matrix R = I + sin(theta) * K + (1-cos(theta)) * K2;
 
-	mRotation = XMVector3TransformNormal(mRotation, R);
+	mRotation; // I need to apply my rotation matrix to this, but it will start at 0, so i cant multiply?
 }
 
 void GameObject::UpdateLocalAxis()
