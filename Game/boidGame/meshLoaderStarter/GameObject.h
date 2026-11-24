@@ -3,6 +3,7 @@
 
 #include <string>
 #include <cassert>
+#include <math.h>
 #include "d3d.h"
 #include "FX.h"
 #include "WindowUtils.h"
@@ -58,6 +59,15 @@ public:
 		mRotation = m.mRotation;
 		return *this;
 	}
+
+	void RotateAroundAxis(DirectX::SimpleMath::Vector3 axis, float angle);
+	DirectX::SimpleMath::Vector3 xAxis = DirectX::SimpleMath::Vector3(1.0f, 0.0f, 0.0f);
+	DirectX::SimpleMath::Vector3 yAxis = DirectX::SimpleMath::Vector3(0.0f, 1.0f, 0.0f);
+	DirectX::SimpleMath::Vector3 zAxis = DirectX::SimpleMath::Vector3(0.0f, 0.0f, 1.0f);
+	DirectX::SimpleMath::Vector3 forwardAxis = DirectX::SimpleMath::Vector3(0.0f, 0.0f, 0.0f);
+	DirectX::SimpleMath::Vector3 rightAxis = DirectX::SimpleMath::Vector3(0.0f, 0.0f, 0.0f);
+	void UpdateLocalAxis();
+
 protected:
 
 	Mesh* mpMesh = nullptr;		//the mesh we are using
