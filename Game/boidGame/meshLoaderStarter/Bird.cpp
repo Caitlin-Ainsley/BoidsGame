@@ -37,7 +37,7 @@ void Bird::moveForward(float dTime)
 
 	DirectX::SimpleMath::Vector3 localAxisForward = DirectX::SimpleMath::Vector3(lX, lY, lZ);	// Make a vector of our directions
 	localAxisForward.Normalize();	// Normalise vector to ensure consistent speed
-	localAxisForward *= birdSpeed;	// Multiply vector by our bird speed value
+	localAxisForward *= birdSpeed * dTime;	// Multiply vector by our bird speed value
 
 	mPosition += localAxisForward;
 }
