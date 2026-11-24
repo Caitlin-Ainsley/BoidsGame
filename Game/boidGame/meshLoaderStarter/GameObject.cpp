@@ -36,7 +36,9 @@ void GameObject::RotateAroundAxis(Vector3 k, float theta) // where k is a unit v
 
 	Matrix R = I + sin(theta) * K + (1-cos(theta)) * K2;
 
-	mRotation; // I need to apply my rotation matrix to this, but it will start at 0, so i cant multiply?
+	Matrix w = {};
+	this->GetWorldMatrix(w); // I need to apply my rotation matrix to this, but it will start at 0, so i cant multiply?
+	// I cant apply a matrix to a vector, i need to do something fundamentally diiferent, or i need to stop using a vector for rotation
 }
 
 void GameObject::UpdateLocalAxis()
