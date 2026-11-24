@@ -4,6 +4,9 @@
 #include <string>
 #include <cassert>
 #include "d3d.h"
+#include "FX.h"
+#include "WindowUtils.h"
+#include "Mesh.h"
 
 //forward declaration, only using a reference/pointer
 class Mesh;
@@ -55,7 +58,7 @@ public:
 		mRotation = m.mRotation;
 		return *this;
 	}
-private:
+protected:
 
 	Mesh* mpMesh = nullptr;		//the mesh we are using
 	DirectX::SimpleMath::Vector3 mPosition, mScale, mRotation;	//positon, scale and orientation

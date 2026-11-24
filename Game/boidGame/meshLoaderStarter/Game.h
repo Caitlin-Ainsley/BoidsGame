@@ -7,7 +7,7 @@
 #include "SpriteFont.h"
 
 #include "Mesh.h"
-#include "GameObject.h"
+#include "Bird.h"
 #include "singleton.h"
 
 /*
@@ -40,6 +40,9 @@ public:
 	enum Modelid {HDRI, MOUNTAINS, BIRD, TOTAL=3 }; 
 
 	float elapsed = 0;
+
+	Bird player;
+
 private:
 
 	//spin some models around

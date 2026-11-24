@@ -1,7 +1,4 @@
-#include "FX.h"
 #include "GameObject.h"
-#include "WindowUtils.h"
-#include "Mesh.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;

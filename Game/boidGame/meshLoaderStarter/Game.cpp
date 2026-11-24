@@ -8,6 +8,7 @@ using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
 InputManager Game::sMKIn;
+constexpr short BIRD_SPEED = 10;
 
 /*quick way to configure a model
 * m - IN/OUT model
@@ -44,6 +45,13 @@ void Game::Load()
 	Mesh& birdMesh = d3d.GetMeshMgr().CreateMesh("bird");
 	birdMesh.CreateFrom("data/bird/Bird.obj", d3d);
 	Setup(mModels[Modelid::BIRD], birdMesh, 1.0f, Vector3(0, 20, -2), Vector3(0, PI, 0));
+	// Set up player
+	player.Initialise(birdMesh, 5, 1, 1);
+	player.GetPosition() = Vector3(0, 20, -20);
+	player.GetRotation() = Vector3(0, 0, 0);
+	// Set up boids:
+		//
+		//
 
 	// Terrain mesh
 	Mesh& mountainsMesh = d3d.GetMeshMgr().CreateMesh("mountains");
@@ -102,10 +110,37 @@ void Game::Update(float dTime)
 	{
 		dir = -dir;
 	}
-	
-	//mModels[Modelid::BIRD].GetPosition().y += dir * dTime;
 
 	mModels[Modelid::BIRD].GetRotation().y += (3 * dTime);
+
+
+	// Player Movement
+	const float movementSpeed = BIRD_SPEED * Game::elapsed;
+	
+	if (sMKIn.IsPressed(VK_W))
+	{
+		player.pitchDown();
+	}
+	if (sMKIn.IsPressed(VK_S))
+	{
+		player.pitchUp();
+	}
+	if (sMKIn.IsPressed(VK_A))
+	{
+		player.rollLeft();
+	}
+	if (sMKIn.IsPressed(VK_D))
+	{
+		player.rollRight();
+	}
+
+	if (sMKIn.IsPressed(VK_SPACE)) // Temporary for testing
+	{
+		player.moveForward();
+	}
+	
+
+	// Camera Movement
 }
 
 void Game::Render(float dTime)
@@ -140,8 +175,6 @@ void Game::RenderGame(float dTime)
 //push the camera around and check for exit
 LRESULT Game::WindowsMssgHandler(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-	const float camInc = 2000.f * Game::elapsed;
-
 	//do something game specific here
 	switch (msg)
 	{
@@ -154,41 +187,6 @@ LRESULT Game::WindowsMssgHandler(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPar
 		case 'Q':
 			PostQuitMessage(0);
 			return 0;
-
-		case 'a':
-		case 'A':
-			Game::mCamPos.x -= camInc;
-			break;
-
-		case 'd':
-		case 'D':
-			Game::mCamPos.x += camInc;
-			break;
-
-		case 's':
-		case 'S':
-			Game::mCamPos.z -= camInc;
-			break;
-
-		case 'w':
-		case 'W':
-			Game::mCamPos.z += camInc;
-			break;
-
-		case 'f':
-		case 'F':
-			Game::mCamPos.y += camInc;
-			break;
-
-		case 'c':
-		case 'C':
-			Game::mCamPos.y -= camInc;
-			break;
-
-
-		case ' ':
-			Game::mCamPos = Game::mDefCamPos;
-			break;
 		}
 	}
 
