@@ -32,11 +32,11 @@ public:
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//	Non Trivial Accessors
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	void pitchDown();	// For now be linear, in future have a smoothing build up
-	void pitchUp();		// For now be linear, in future have a smoothing build up
-	void rollLeft();	// For now be linear, in future have a smoothing build up
-	void rollRight();	// For now be linear, in future have a smoothing build up
-	void moveForward(); // Uses bird speed
+	void pitchDown(float dTime);	// For now be linear, in future have a smoothing build up
+	void pitchUp(float dTime);		// For now be linear, in future have a smoothing build up
+	void rollLeft(float dTime);	// For now be linear, in future have a smoothing build up
+	void rollRight(float dTime);	// For now be linear, in future have a smoothing build up
+	void moveForward(float dTime); // Uses bird speed
 
 };
 

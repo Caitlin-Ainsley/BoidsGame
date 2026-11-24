@@ -13,23 +13,23 @@ void Bird::Initialise(Mesh &mesh, float newBirdSpeed, float newPitchStrength, fl
 	mScale = DirectX::SimpleMath::Vector3(1, 1, 1);
 	mRotation = DirectX::SimpleMath::Vector3(0, 0, 0);
 }
-void Bird::pitchDown()
+void Bird::pitchDown(float dTime)
 {
-	mRotation.x += pitchStrength;
+	mRotation.x += pitchStrength * dTime;
 }
-void Bird::pitchUp()
+void Bird::pitchUp(float dTime)
 {
-	mRotation.x -= pitchStrength;
+	mRotation.x -= pitchStrength * dTime;
 }
-void Bird::rollLeft()
+void Bird::rollLeft(float dTime)
 {
-	mRotation.z -= rollStrength;
+	mRotation.z -= rollStrength * dTime;
 }
-void Bird::rollRight()
+void Bird::rollRight(float dTime)
 {
-	mRotation.z += rollStrength;
+	mRotation.z += rollStrength * dTime;
 }
-void Bird::moveForward()
+void Bird::moveForward(float dTime)
 {
 	float lX = 1.0f;	// l - Local  :  Switch to actual calculation
 	float lY = 1.0f;	// l - Local  :  Switch to actual calculation

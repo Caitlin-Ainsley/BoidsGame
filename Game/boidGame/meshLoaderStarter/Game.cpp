@@ -119,24 +119,24 @@ void Game::Update(float dTime)
 	
 	if (sMKIn.IsPressed(VK_W))
 	{
-		player.pitchDown();
+		player.pitchDown(Game::elapsed);
 	}
 	if (sMKIn.IsPressed(VK_S))
 	{
-		player.pitchUp();
+		player.pitchUp(Game::elapsed);
 	}
 	if (sMKIn.IsPressed(VK_A))
 	{
-		player.rollLeft();
+		player.rollLeft(Game::elapsed);
 	}
 	if (sMKIn.IsPressed(VK_D))
 	{
-		player.rollRight();
+		player.rollRight(Game::elapsed);
 	}
 
 	if (sMKIn.IsPressed(VK_SPACE)) // Temporary for testing
 	{
-		player.moveForward();
+		player.moveForward(Game::elapsed);
 	}
 
 	DBOUT("==ROTATION=====")
@@ -202,6 +202,11 @@ void Game::RenderGame(float dTime)
 	{
 		d3d.GetFX().Render(mod);
 	}
+
+	d3d.GetFX().Render(player);
+	// Render boids
+		//
+		//
 
 	d3d.EndRender();
 	sMKIn.PostProcess();
