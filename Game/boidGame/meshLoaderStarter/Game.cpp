@@ -138,9 +138,44 @@ void Game::Update(float dTime)
 	{
 		player.moveForward();
 	}
+
+	DBOUT("==ROTATION=====")
+	DBOUT(player.GetRotation().x);
+	DBOUT(player.GetRotation().y);
+	DBOUT(player.GetRotation().z);
+	DBOUT("==POSITION=====")
+	DBOUT(player.GetPosition().x);
+	DBOUT(player.GetPosition().y);
+	DBOUT(player.GetPosition().z);
+	DBOUT("\n\n");
 	
 
 	// Camera Movement
+	//Temporary:
+	if (sMKIn.IsPressed(VK_I))
+	{
+		Game::mCamPos.z += movementSpeed;
+	}
+	if (sMKIn.IsPressed(VK_K))
+	{
+		Game::mCamPos.z -= movementSpeed;
+	}
+	if (sMKIn.IsPressed(VK_J))
+	{
+		Game::mCamPos.x -= movementSpeed;
+	}
+	if (sMKIn.IsPressed(VK_L))
+	{
+		Game::mCamPos.x += movementSpeed;
+	}
+	if (sMKIn.IsPressed(VK_LSHIFT))
+	{
+		Game::mCamPos.y += movementSpeed;
+	}
+	if (sMKIn.IsPressed(VK_LCONTROL))
+	{
+		Game::mCamPos.y -= movementSpeed;
+	}
 }
 
 void Game::Render(float dTime)
