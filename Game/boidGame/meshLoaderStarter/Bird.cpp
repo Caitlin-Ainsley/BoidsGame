@@ -26,7 +26,7 @@ void Bird::pitchDown(float dTime)
 void Bird::pitchUp(float dTime)
 {
 	DirectX::SimpleMath::Matrix w = {};
-	this->GetWorldMatrix(w);									// Rotations do not work after a combination of rotations????????
+	this->GetWorldMatrix(w);									// Rotations do not work after a combination of rotations???????
 
 	DirectX::SimpleMath::Vector3 k = w.Right();
 	mRotation -= k * pitchStrength * dTime;
