@@ -37,6 +37,7 @@ public:
 	void rollLeft(float dTime);	// For now be linear, in future have a smoothing build up
 	void rollRight(float dTime);	// For now be linear, in future have a smoothing build up
 	void moveForward(float dTime); // Uses bird speed
+	void moveRight(float dTime); // Uses bird speed
 
 };
 

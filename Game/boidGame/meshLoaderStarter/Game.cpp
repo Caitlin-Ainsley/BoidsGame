@@ -138,6 +138,10 @@ void Game::Update(float dTime)
 	{
 		player.moveForward(Game::elapsed);
 	}
+	if (sMKIn.IsPressed(VK_B)) // Temporary for testing
+	{
+		player.moveRight(Game::elapsed);
+	}
 
 	DBOUT("==ROTATION=====")
 	DBOUT(player.GetRotation().x);
