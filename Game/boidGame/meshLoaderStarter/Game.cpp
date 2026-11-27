@@ -48,8 +48,7 @@ void Game::Load()
 	// Set up player
 	player.Initialise(birdMesh, 5, 1, 1);
 	player.GetPosition() = Vector3(0, 20, -20);
-	player.GetRotation() = Vector3(0, 0, 1);
-	player.UpdateLocalAxis();
+	player.GetRotation() = Vector3(0, 0, 0);
 	// Set up boids:
 		//
 		//
@@ -140,10 +139,6 @@ void Game::Update(float dTime)
 		player.moveForward(Game::elapsed);
 	}
 
-	DBOUT("==LOC AXIS=====")
-	DBOUT(player.forwardAxis.x);
-	DBOUT(player.forwardAxis.y);
-	DBOUT(player.forwardAxis.z);
 	DBOUT("==ROTATION=====")
 	DBOUT(player.GetRotation().x);
 	DBOUT(player.GetRotation().y);

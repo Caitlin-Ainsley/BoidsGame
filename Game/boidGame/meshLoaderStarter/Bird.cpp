@@ -19,7 +19,7 @@ void Bird::pitchDown(float dTime)
 	this->GetWorldMatrix(w);
 
 	DirectX::SimpleMath::Vector3 k = w.Right();
-	mRotation *= k * pitchStrength * dTime;
+	mRotation += k * pitchStrength * dTime;
 }
 void Bird::pitchUp(float dTime)
 {
@@ -27,7 +27,7 @@ void Bird::pitchUp(float dTime)
 	this->GetWorldMatrix(w);
 
 	DirectX::SimpleMath::Vector3 k = w.Right();
-	mRotation *= k * pitchStrength * dTime;
+	mRotation -= k * pitchStrength * dTime;
 }
 void Bird::rollLeft(float dTime)
 {
@@ -35,7 +35,7 @@ void Bird::rollLeft(float dTime)
 	this->GetWorldMatrix(w);
 
 	DirectX::SimpleMath::Vector3 k = w.Forward();
-	mRotation *= k * rollStrength * dTime;
+	mRotation -= k * rollStrength * dTime;
 }
 void Bird::rollRight(float dTime)
 {
@@ -43,7 +43,7 @@ void Bird::rollRight(float dTime)
 	this->GetWorldMatrix(w);
 
 	DirectX::SimpleMath::Vector3 k = w.Forward();
-	mRotation *= k * rollStrength * dTime;
+	mRotation += k * rollStrength * dTime;
 }
 
 void Bird::moveForward(float dTime)
@@ -52,6 +52,6 @@ void Bird::moveForward(float dTime)
 	this->GetWorldMatrix(w);
 
 	DirectX::SimpleMath::Vector3 k = w.Forward();
-	mPosition += k * birdSpeed * dTime;
+	mPosition -= k * birdSpeed * dTime;
 }
 
