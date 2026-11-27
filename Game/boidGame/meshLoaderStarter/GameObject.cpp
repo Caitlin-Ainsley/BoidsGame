@@ -20,7 +20,7 @@ void GameObject::Initialise(Mesh &mesh)
 
 void GameObject::GetWorldMatrix(Matrix& w)
 {
-	w = Matrix::CreateScale(mScale) * Matrix::CreateRotationX(mRotation.x) *
-		Matrix::CreateRotationY(mRotation.y) * Matrix::CreateRotationZ(mRotation.z) *
+	w = Matrix::CreateScale(mScale) * Matrix::CreateRotationZ(mRotation.z) *
+		Matrix::CreateRotationX(mRotation.x) * Matrix::CreateRotationY(mRotation.y) *
 		Matrix::CreateTranslation(mPosition);
 }

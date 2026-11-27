@@ -13,6 +13,8 @@ void Bird::Initialise(Mesh &mesh, float newBirdSpeed, float newPitchStrength, fl
 	mScale = DirectX::SimpleMath::Vector3(1, 1, 1);
 	mRotation = DirectX::SimpleMath::Vector3(0, 0, 0);
 }
+
+//	https://www.3dgep.com/understanding-the-view-matrix/#fps-camera
 void Bird::pitchDown(float dTime)
 {
 	DirectX::SimpleMath::Matrix w = {};
