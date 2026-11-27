@@ -27,6 +27,11 @@ public:
 	DirectX::SimpleMath::Vector3& GetPosition() { return mPosition; }
 	DirectX::SimpleMath::Vector3& GetScale() { return mScale; }
 	DirectX::SimpleMath::Vector3& GetRotation() { return mRotation; }
+	DirectX::SimpleMath::Vector3& GetYawPitchRoll() { return mYawPitchRoll; }
+
+
+	DirectX::SimpleMath::Matrix FPSViewLH(DirectX::SimpleMath::Vector3 eye);
+	
 	//build a matrix from the euler angles, pos and scale
 	//note that this hard codes a concatenation order that you might not want
 	void GetWorldMatrix(DirectX::SimpleMath::Matrix& w);
@@ -57,13 +62,14 @@ public:
 		mPosition = m.mPosition;
 		mScale = m.mScale;
 		mRotation = m.mRotation;
+		mYawPitchRoll = m.mYawPitchRoll;
 		return *this;
 	}
 
 protected:
 
 	Mesh* mpMesh = nullptr;		//the mesh we are using
-	DirectX::SimpleMath::Vector3 mPosition, mScale, mRotation;	//positon, scale and orientation
+	DirectX::SimpleMath::Vector3 mPosition, mScale, mRotation, mYawPitchRoll;	//positon, scale and orientation
 	Material mOverrideMaterial;		//an alternate material to the one in the Mesh
 	bool mUseOverrideMat = false;	//should we actually be using it?
 };
