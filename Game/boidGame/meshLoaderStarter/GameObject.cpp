@@ -20,7 +20,7 @@ void GameObject::Initialise(Mesh &mesh)
 
 void GameObject::GetWorldMatrix(Matrix& w)
 {
-	w = Matrix::CreateScale(mScale) * Matrix::CreateFromYawPitchRoll(mRotation) *
+	w = Matrix::CreateScale(mScale) * XMMatrixRotationRollPitchYawFromVector(mRotation) *
 		Matrix::CreateTranslation(mPosition);
 }
 
