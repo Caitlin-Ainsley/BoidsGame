@@ -41,6 +41,9 @@ void GameObject::RotateAroundAxis(Vector3 k, float theta) // where k is a unit v
 	// assume that v = mRotation : but i dont think this will work
 
 	Vector3 vRot = mRotation * cos(theta) + (k * mRotation) * sin(theta) + k * (k * mRotation) * (1 - cos(theta));
+	mRotation = mRotation + vRot;
+
+	UpdateLocalAxis();
 }
 
 void GameObject::UpdateLocalAxis()
