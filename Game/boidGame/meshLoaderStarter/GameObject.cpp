@@ -29,16 +29,18 @@ void GameObject::RotateAroundAxis(Vector3 k, float theta) // where k is a unit v
 {	//////////////////////////////////////////////////////////////////////////////////////////
 	// Using the Rodrigues formula for rotation
 	//////////////////////////////////////////////////////////////////////////////////////////
-	Matrix I = Matrix::Identity;
 
-	Matrix K = Matrix(Vector3(0, -k.z, k.y), Vector3(k.z, 0, -k.x), Vector3(-k.y, k.x, 0));
-	Matrix K2 = K * K;
+	// Matrix form
+	//Matrix I = Matrix::Identity;
+	//Matrix K = Matrix(Vector3(0, -k.z, k.y), Vector3(k.z, 0, -k.x), Vector3(-k.y, k.x, 0));
+	//Matrix K2 = K * K;
+	//Matrix R = I + sin(theta) * K + (1-cos(theta)) * K2;
 
-	Matrix R = I + sin(theta) * K + (1-cos(theta)) * K2;
+	// Vector form
 
-	Matrix w = {};
-	this->GetWorldMatrix(w); // I need to apply my rotation matrix to this, but it will start at 0, so i cant multiply?
-	// I cant apply a matrix to a vector, i need to do something fundamentally diiferent, or i need to stop using a vector for rotation
+	// assume that v = mRotation : but i dont think this will work
+
+	Vector3 vRot = mRotation * cos(theta) + (k * mRotation) * sin(theta) + k * (k * mRotation) * (1 - cos(theta));
 }
 
 void GameObject::UpdateLocalAxis()
